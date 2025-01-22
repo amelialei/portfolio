@@ -74,7 +74,7 @@ function setColorScheme(scheme) {
 select.addEventListener('input', function (event) {
   const value = event.target.value;
   setColorScheme(value)
-  
+
   console.log('color scheme changed to', event.target.value);  
 });
 
@@ -86,6 +86,39 @@ if ('colorScheme' in localStorage) {
   setColorScheme('automatic');
   select.value = 'automatic';
 }
+
+// Get reference to the form element
+const form = document.querySelector('form');
+
+// Add event listener for the submit event, with optional chaining
+form?.addEventListener('submit', function(event) {
+  // Prevent the default form submission behavior
+  event.preventDefault();
+  
+  // Create a new FormData object from the form
+  const data = new FormData(form);
+
+  // Initialize an empty string for the query string
+  let queryString = '';
+  
+  // Iterate over each form field
+  for (let [name, value] of data) {
+    // Log the form field name and value
+    console.log(name, value);
+    
+    // Build the query string with encoded values
+    queryString += `${encodeURIComponent(name)}=${encodeURIComponent(value)}&`;
+  }
+
+  // Remove the trailing '&' character
+  queryString = queryString.slice(0, -1);
+
+  // Build the full URL with parameters
+  const url = form.action + '?' + queryString;
+
+  // Log the constructed URL
+  console.log('Constructed URL:', url);
+});
 
 
 
