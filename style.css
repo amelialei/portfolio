@@ -1,6 +1,7 @@
 :root {
-  --color-accent: #34b6f7; 
+  --color-accent: oklch(73.67% 0.149 234.34 / 80.75%); 
   accent-color: var(--color-accent);
+  color-scheme: light dark;
 }
 body {
     font: 100%/1.5 system-ui;
@@ -9,11 +10,12 @@ body {
     padding: 10ch;
 }
 nav {
+  --border-color: oklch(50% 10% 200 / 40%);
   display: flex;
   margin-bottom: 1em;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: oklch(80% 3% 200);
+  border-bottom-color: var(--border-color);
 }
 nav a {
   flex: 1;
@@ -25,7 +27,7 @@ nav a {
 nav a.current {
   border-bottom-width: 0.4em;
   border-bottom-style: solid;
-  border-bottom-color: oklch(80% 3% 200); 
+  border-bottom-color: var(--border-color);
   padding-bottom: 0.5em;
 }
 nav a:hover {
@@ -33,7 +35,7 @@ nav a:hover {
   border-bottom-style: solid;
   border-bottom-color: var(--color-accent); 
   padding-bottom: 0.5em;
-  background-color: oklch(from var(--color-accent) 95% 5% h)
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
 form {
   display: grid;
@@ -102,4 +104,12 @@ header p a {
 .resume main section article {
   margin-top: 1em; 
   margin-bottom: 0.5em;
+}
+
+.color-scheme {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  font-size: 80%;
+  font-family: inherit;
 }
