@@ -7,6 +7,22 @@
     <title>Contact</title>
     <link rel="stylesheet" href="../style.css">
     <script src="../global.js" type="module"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById('contactForm');
+            form?.addEventListener("submit", (event) => {
+                event.preventDefault(); 
+                const data = new FormData(form);
+                let mailtoUrl = form.action + "?";
+                const params = [];
+                for (let [name, value] of data) {
+                    params.push(`${name}=${encodeURIComponent(value)}`);
+                }
+                mailtoUrl += params.join("&");
+                location.href = mailtoUrl;
+            });
+        });
+    </script>
 </head>
 <body>
     <!-- <nav>
@@ -17,7 +33,7 @@
         <a href="https://amelialei.github.io/portfolio/resume/index.html">Resume</a>
     </nav> -->
     <h1>Contact</h1>
-    <form action="mailto:aclei@ucsd.edu" method="post" enctype="text/plain">
+    <form action="mailto:aclei@ucsd.edu" method="GET">
         <label for="email">Email:</label>
         <input name="email" type="email" value="johndoe@example.com">
         <label for="subject">Subject:</label>

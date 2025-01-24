@@ -1,5 +1,5 @@
   :root {
-    --color-accent: oklch(73.67% 0.149 234.34 / 80.75%); 
+    --color-accent: oklch(57.59% 0.2 200 / 25.39%); 
     accent-color: var(--color-accent);
     color-scheme: light dark;
   }
@@ -10,7 +10,8 @@
       padding: 10ch;
   }
   nav {
-    --border-color: oklch(50% 10% 200 / 40%);
+    /* --border-color: oklch(50% 10% 200 / 40%); */
+    --border-color: var(--color-accent);
     display: flex;
     margin-bottom: 1em;
     border-bottom-width: 1px;
@@ -27,7 +28,7 @@
   nav a.current {
     border-bottom-width: 0.4em;
     border-bottom-style: solid;
-    border-bottom-color: var(--border-color);
+    border-bottom-color: var(--color-accent);
     padding-bottom: 0.5em;
   }
   nav a:hover {
@@ -71,6 +72,16 @@
     line-height: 1.1;
     text-wrap: balance; 
   }
+  /* header p a {
+    color: var(--color-accent);
+  } */
+  .resume {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
   .resume header {
     font-size: 1rem; 
     text-align: center;
@@ -79,17 +90,6 @@
     font-size: 2.8rem; 
     text-align: center;
     margin-bottom: 0.3em; 
-  
-  }
-  header p a {
-    color: var(--color-accent);
-  }
-  .resume {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2em;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   .resume section p, .resume section h3, .resume section time {
     margin: 0;
@@ -104,7 +104,6 @@
     margin-top: 1em; 
     margin-bottom: 0.5em;
   }
-  
   .color-scheme {
     position: absolute;
     top: 3rem;
