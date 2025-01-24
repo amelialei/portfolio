@@ -91,14 +91,6 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-  /* @media (prefers-color-scheme: dark) {
-    :root {
-      --color-background: #121212;
-    }
-    .resume {
-      background-color: var(--color-background); 
-    }
-  } */
   .resume section p, .resume section h3, .resume section time {
     margin: 0;
     padding: 0;
