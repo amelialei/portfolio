@@ -1,115 +1,136 @@
-:root {
-  --color-accent: oklch(73.67% 0.149 234.34 / 80.75%); 
-  accent-color: var(--color-accent);
-  color-scheme: light dark;
-}
-body {
-    font: 100%/1.5 system-ui;
-    max-width: 100ch;
-    margin-inline: auto;
-    padding: 10ch;
-}
-nav {
-  --border-color: oklch(50% 10% 200 / 40%);
-  display: flex;
-  margin-bottom: 1em;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: var(--border-color);
-}
-nav a {
-  flex: 1;
-  text-decoration: none;
-  color: inherit;
-  text-align: center;
-  padding: 0.5em;
-}
-nav a.current {
-  border-bottom-width: 0.4em;
-  border-bottom-style: solid;
-  border-bottom-color: var(--border-color);
-  padding-bottom: 0.5em;
-}
-nav a:hover {
-  border-bottom-width: 0.4em;
-  border-bottom-style: solid;
-  border-bottom-color: var(--color-accent); 
-  padding-bottom: 0.5em;
-  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
-}
-form {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 1em;
-}
-.grid {
-  grid-column: 1 / -1;
-}
-button {
-  grid-column: 1 / -1; 
-}
-.projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-  gap: 1em;
-}
-article {
-  display: grid;
-  grid-template-rows: subgrid;
-  grid-row: span 3;
-  gap: 1em;
-}
-h2 {
-  margin: 0;
-  font-size: 2rem; 
-}
-h1 {
-  font-size: 4rem; 
-  font-weight: bold;
-}
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.1;
-  text-wrap: balance; 
-}
-.resume header {
-  font-size: 1rem; 
-  text-align: center;
-}
-.resume h1 {
-  font-size: 2.8rem; 
-  text-align: center;
-  margin-bottom: 0.3em; `
+  :root {
+    --color-accent: oklch(73.67% 0.149 234.34 / 80.75%); 
+    accent-color: var(--color-accent);
+    color-scheme: light dark;
 
-}
-header p a {
-  color: var(--color-accent);
-}
-.resume {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2em;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-.resume section p, .resume section h3, .resume section time {
-  margin: 0;
-  padding: 0;
-  line-height: 1; 
-}
-.resume section h2 {
-  margin-top: 1em; 
-  margin-bottom: 0.5em; 
-}
-.resume main section article {
-  margin-top: 1em; 
-  margin-bottom: 0.5em;
-}
 
-.color-scheme {
-  position: absolute;
-  top: 3rem;
-  right: 3rem;
-  font-size: 80%;
-  font-family: inherit;
-}
+  }
+  body {
+      font: 100%/1.5 system-ui;
+      max-width: 100ch;
+      margin-inline: auto;
+      padding: 10ch;
+  }
+  nav {
+    --border-color: oklch(50% 10% 200 / 40%);
+    display: flex;
+    margin-bottom: 1em;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: var(--border-color);
+  }
+  nav a {
+    flex: 1;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    padding: 0.5em;
+  }
+  nav a.current {
+    border-bottom-width: 0.4em;
+    border-bottom-style: solid;
+    border-bottom-color: var(--border-color);
+    padding-bottom: 0.5em;
+  }
+  nav a:hover {
+    border-bottom-width: 0.4em;
+    border-bottom-style: solid;
+    border-bottom-color: var(--color-accent); 
+    padding-bottom: 0.5em;
+    background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+  }
+  form {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1em;
+  }
+  .grid {
+    grid-column: 1 / -1;
+  }
+  button {
+    grid-column: 1 / -1; 
+  }
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+    gap: 1em;
+  }
+  article {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+    gap: 1em;
+  }
+  h2 {
+    margin: 0;
+    font-size: 2rem; 
+  }
+  h1 {
+    font-size: 4rem; 
+    font-weight: bold;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.1;
+    text-wrap: balance; 
+  }
+  .resume header {
+    font-size: 1rem; 
+    text-align: center;
+  }
+  .resume h1 {
+    font-size: 2.8rem; 
+    text-align: center;
+    margin-bottom: 0.3em; 
+  
+  }
+  header p a {
+    color: var(--color-accent);
+  }
+  
+  .resume {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2em;
+    background-color: var(--background-light);
+    color: var(--text-light);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background: #121212;
+      --color-text:  #ffffff;       
+      --shadow-color: 0 4px 8px rgba(255, 255, 255, 0.573);
+    }
+  
+    .resume {
+      background-color: var(--color-background); 
+      color: var(--color-text); 
+      box-shadow: var(--shadow-color);
+      border-radius: 10px;
+    }
+  }
+  .resume section p, .resume section h3, .resume section time {
+    margin: 0;
+    padding: 0;
+    line-height: 1; 
+  }
+  .resume section h2 {
+    margin-top: 1em; 
+    margin-bottom: 0.5em; 
+  }
+  .resume main section article {
+    margin-top: 1em; 
+    margin-bottom: 0.5em;
+  }
+  
+  .color-scheme {
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+    font-size: 80%;
+    font-family: inherit;
+  } 
+  
+   
+  
