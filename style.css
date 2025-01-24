@@ -2,8 +2,6 @@
     --color-accent: oklch(73.67% 0.149 234.34 / 80.75%); 
     accent-color: var(--color-accent);
     color-scheme: light dark;
-
-
   }
   body {
       font: 100%/1.5 system-ui;
@@ -86,30 +84,21 @@
   header p a {
     color: var(--color-accent);
   }
-  
   .resume {
     max-width: 800px;
     margin: 0 auto;
     padding: 2em;
-    background-color: var(--background-light);
-    color: var(--text-light);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-  @media (prefers-color-scheme: dark) {
+  /* @media (prefers-color-scheme: dark) {
     :root {
       --color-background: #121212;
-      --color-text:  #ffffff;       
-      --shadow-color: 0 4px 8px rgba(255, 255, 255, 0.573);
     }
-  
     .resume {
       background-color: var(--color-background); 
-      color: var(--color-text); 
-      box-shadow: var(--shadow-color);
-      border-radius: 10px;
     }
-  }
+  } */
   .resume section p, .resume section h3, .resume section time {
     margin: 0;
     padding: 0;
