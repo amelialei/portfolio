@@ -25,7 +25,7 @@
     },
     {
         "title": "Statistical Language Model",
-        "year": "2024",
+        "year": "2023",
         "image": "https://eu-images.contentstack.com/v3/assets/blt6b0f74e5591baa03/bltc4d876084c0f0d3c/63197bc5556275209a4b6830/2016.jpg",
         "description": "Created a series of language models for processing and generating text. This includes functions to fetch and tokenize a book from a URL, and various classes for different types of language models: UniformLM, UnigramLM, and NGramLM. The UniformLM and UnigramLM models calculate probabilities based on token frequency and generate random text based on these probabilities. The NGramLM model works with n-grams (sequences of n words), calculating conditional probabilities for word sequences and using a recursive approach to handle higher-order n-grams. "
     },
@@ -49,19 +49,19 @@
     },
     {
         "title": "PinPoint",
-        "year": "2024",
+        "year": "2022",
         "image": "https://img.freepik.com/premium-psd/pinpoint-map-3d-cartoon-illustration_705975-33.jpg",
         "description": "PinPoint is a social location-sharing app that lets you stay connected with friends in real time. Users can drop pins on a map to share favorite restaurants, cafes, hangout spots, or any place they love, making it easy for friends to discover new locations. Friends can see shared pins, add comments, and set meet-up plans in the app. ."
     },
     {
         "title": "Budget App",
-        "year": "2024",
+        "year": "2022",
         "image": "https://img.freepik.com/premium-vector/piggy-bank-with-coin-cartoon-illustration-flat-vector-isolated-object_374761-124.jpg",
         "description": "TravelBudget is a practical app designed to help you manage and track your spending during vacations. You can easily log your expenses, categorize purchases (e.g., food, transportation, activities), and monitor your overall spending in real-time. The app also features a built-in currency converter, allowing you to view prices in your home currency, helping you stay on top of your budget no matter where you are.."
     },
     {
         "title": "Recipe Book",
-        "year": "2024",
+        "year": "2023",
         "image": "https://media.istockphoto.com/id/1369712605/vector/cooking-food-in-frying-pan-vector-illustration-of-cut-vegetables-cooked-on-gas-stove-cartoon.jpg?s=612x612&w=0&k=20&c=3H9TU5PosN-vYYFQCahK-RdA695_41QiT90n1re_0j0=",
         "description": "This is personalized digital recipe collection that allows users to create, organize, and share their favorite recipes. The app allows you to upload and save your own recipes, categorize them by meal type, ingredients, or cuisine, and easily search through them. It also includes features for meal planning, where users can select recipes for the week and generate a shopping list based on the ingredients. The app offers the ability to share recipes with friends and family. "
     },
