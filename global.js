@@ -1,22 +1,3 @@
-// console.log('IT’S ALIVE!');
-
-// function $$(selector, context = document) {
-//   return Array.from(context.querySelectorAll(selector));
-// }
-
-// const navLinks= $$('nav a');
-
-// let currentLink = navLinks.find(
-//     (a) => a.host === location.host && a.pathname === location.pathname
-// );
-
-// currentLink?.classList.add('current');
-
-// if (currentLink) {
-//     // or if (currentLink !== undefined)
-//     currentLink.classList.add('current');
-// }
-
 let pages = [
   {url: 'index.html', title: 'Home'},
   {url: 'projects/index.html', title: 'Projects'},
@@ -90,6 +71,67 @@ if ('colorScheme' in localStorage) {
   setColorScheme('automatic');
   select.value = 'automatic';
 }
+
+export async function fetchJSON(url) {
+  try {
+      // Fetch the JSON file from the given URL
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch projects: ${response.statusText}`);
+      }
+      const data = await response.json();
+      return data; 
+  } catch (error) {
+      console.error('Error fetching or parsing JSON data:', error);
+  }
+}
+
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+  if (!containerElement) {
+      console.error("Invalid container element provided.");
+      return;
+  }
+
+  containerElement.innerHTML = ''; // Clear existing content
+
+  const projectsTitle = document.querySelector('.projects-title');
+  if (projectsTitle) {
+      projectsTitle.textContent = `${projects.length} Projects`;
+  }
+
+  projects.forEach(project => {
+    const article = document.createElement('article');
+
+    const heading = document.createElement(headingLevel);
+    heading.textContent = project.title || 'Untitled Project';
+
+    const img = document.createElement('img');
+    img.src = project.image?.trim() || 'default-placeholder.png';
+    img.alt = project.title?.trim() || 'Project image';
+    img.loading = 'lazy';
+
+    const description = document.createElement('p');
+    description.textContent = project.description?.trim() || 'No description available.';
+
+    article.appendChild(heading);
+    article.appendChild(img);
+    article.appendChild(description);
+
+    containerElement.appendChild(article);
+  });
+}
+
+export async function fetchGitHubData(username) {
+  return fetchJSON(`https://api.github.com/users/${username}`);
+}
+
+
+
+
+
+
+
+
 
 
 
