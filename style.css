@@ -115,7 +115,7 @@
     font-family: inherit;
   } 
 
-  #profile-stats {
+#profile-stats {
     text-align: center;
     margin-top: 30px;
     font-family: Arial, sans-serif;
@@ -141,7 +141,6 @@
     font-size: 32px;
     font-weight: bold;
     margin: 5px 0 0;
-    color: #000; 
     grid-row: 2;
 }
 
