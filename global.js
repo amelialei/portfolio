@@ -15,11 +15,11 @@ for (let p of pages) {
 
   const ARE_WE_HOME = document.documentElement.classList.contains('home');
 
-  // url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url;
-  if (!url.startsWith('http')) {
-    url = ARE_WE_HOME ? url : `/${url}`;
-    url = `/portfolio${url}`;
-  }
+  url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url;
+  // if (!url.startsWith('http')) {
+  //   url = ARE_WE_HOME ? url : `/${url}`;
+  //   url = `/portfolio${url}`;
+  // }
 
   let a = document.createElement('a');
   a.href = url;
@@ -74,7 +74,6 @@ if ('colorScheme' in localStorage) {
 
 export async function fetchJSON(url) {
   try {
-      // Fetch the JSON file from the given URL
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`Failed to fetch projects: ${response.statusText}`);
@@ -92,7 +91,7 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
       return;
   }
 
-  containerElement.innerHTML = ''; // Clear existing content
+  containerElement.innerHTML = ''; 
 
   const projectsTitle = document.querySelector('.projects-title');
   if (projectsTitle) {
@@ -110,12 +109,22 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
     img.alt = project.title?.trim() || 'Project image';
     img.loading = 'lazy';
 
+    const detailsContainer = document.createElement('div');
+    detailsContainer.classList.add('project-details');
+
     const description = document.createElement('p');
     description.textContent = project.description?.trim() || 'No description available.';
 
+    const year = document.createElement('p');
+    year.textContent = project.year ? project.year : 'Year unknown';
+    year.classList.add('project-year'); 
+
+    detailsContainer.appendChild(description);
+    detailsContainer.appendChild(year);
+
     article.appendChild(heading);
     article.appendChild(img);
-    article.appendChild(description);
+    article.appendChild(detailsContainer); 
 
     containerElement.appendChild(article);
   });
