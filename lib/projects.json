@@ -2,7 +2,7 @@
     {
         "title": "Cafe Recommendation System",
         "year": "2024",
-        "image": "https://media.istockphoto.com/id/1473037351/vector/book-cook-food-cookbook-recipe-ingredients-composition-concept-vector-graphic-design.jpg?s=612x612&w=0&k=20&c=2Y0V-2LqI4nzuGbjMGY56s8ENiFrhhTI7xZqTeHCgFg=",
+        "image": "https://www.shutterstock.com/image-vector/street-cafe-shop-old-french-600nw-1780106321.jpg",
         "description": "The Cafe Recommender System is a personalized recommendation engine that helps users discover cafes based on user preferences, sentiment analysis, and location-based filtering. Using data from the Yelp Academic Dataset, the system integrates collaborative filtering, sentiment analysis, and geospatial distance calculations to generate highly relevant recommendations.        "
     },
     {

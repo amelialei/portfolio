@@ -224,6 +224,7 @@
   border: 1px solid #ccc; 
   border-radius: 5px; 
   box-sizing: border-box; 
+  margin-bottom: 40px;
 }
 
 &:has(path:hover) {
