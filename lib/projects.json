@@ -19,7 +19,7 @@
     },
     {
         "title": "Ethereum Predictive Model",
-        "year": "2024",
+        "year": "2023",
         "image": "https://watcher.guru/news/wp-content/uploads/2025/01/ethereum-price-predction-main.jpg",
         "description": "I predicted Ethereum’s closing price and price trends using machine learning. Data preprocessing included 10-minute aggregation, log-transforming volume, and MinMax scaling. A polynomial linear regression (degree 4) was used first, followed by a decision tree regressor, which improved accuracy. I also built a decision tree classifier to predict price increases with moderate accuracy. The project involved hyperparameter tuning, feature importance analysis, and performance visualization."
     },
@@ -31,7 +31,7 @@
     },
     {
         "title": "Loan Approval EDA",
-        "year": "2024",
+        "year": "2021",
         "image": "https://media.istockphoto.com/id/1413481802/vector/approved-credit-bill-good-credit-score-receiving-loan-approval-from-bank-personal-finance.jpg?s=612x612&w=0&k=20&c=Nkcl92YeB6pcgo6MUo5YESYtUSoY0nyAo3YSi8FtiNs=",
         "description": "I examined how employment length, income, and loan amount impact loan approval rates for young (18-28) vs. mid-career adults (28-38), focusing on education level. Using scatter plots and a categorical bar plot, I analyzed key relationships and conducted T-tests for significance. Results showed that education level has little impact on loan amounts, but mid-career adults are significantly more likely to repay loans, likely due to greater financial stability and literacy."
     },
@@ -43,7 +43,7 @@
     },
     {
         "title": "MNIST Number Classification",
-        "year": "2023",
+        "year": "2022",
         "image": "https://media.istockphoto.com/id/1219153212/vector/cartoon-set-with-different-numbers.jpg?s=612x612&w=0&k=20&c=PQl96fAwjqDJyh6eXqcuP_IbPsevjPlZts85JeB050c=",
         "description": "This project implements a K-Nearest Neighbors (K-NN) classifier for the MNIST handwritten digit dataset using Java to classify user written numbers. The program loads compressed MNIST image and label data, processes it into a structured format, and applies the Euclidean distance metric to classify test images based on their k-nearest neighbors in the training set. A priority queue is used to efficiently store and retrieve the closest matches. The classifier is tested on a subset of the MNIST dataset, and its accuracy is evaluated."
     },
@@ -61,7 +61,7 @@
     },
     {
         "title": "Recipe Book",
-        "year": "2023",
+        "year": "2021",
         "image": "https://media.istockphoto.com/id/1369712605/vector/cooking-food-in-frying-pan-vector-illustration-of-cut-vegetables-cooked-on-gas-stove-cartoon.jpg?s=612x612&w=0&k=20&c=3H9TU5PosN-vYYFQCahK-RdA695_41QiT90n1re_0j0=",
         "description": "This is personalized digital recipe collection that allows users to create, organize, and share their favorite recipes. The app allows you to upload and save your own recipes, categorize them by meal type, ingredients, or cuisine, and easily search through them. It also includes features for meal planning, where users can select recipes for the week and generate a shopping list based on the ingredients. The app offers the ability to share recipes with friends and family. "
     },

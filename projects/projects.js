@@ -44,20 +44,20 @@ function renderPieChart(projectsGiven) {
       .style('cursor', 'pointer') 
       .on('click', function () {
         selectedIndex = selectedIndex === i ? -1 : i;
-        console.log(selectedIndex);
   
         legend.selectAll('li')
         .attr('class', (_, idx) => idx === selectedIndex ? 'selected' : '');
         
-        console.log(legend.selectAll('li'));
         svg.selectAll('path')
           .attr('class', (_, idx) => idx === selectedIndex ? 'selected' : '');
           
         if (selectedIndex === -1) {
-          renderProjects(projects, projectsContainer, 'h2'); 
+          renderProjects(projectsGiven, projectsContainer, 'h2'); 
         } else {
           let selectedYear = data[selectedIndex].label; 
-          filteredProjects = projects.filter((p) => p.year === selectedYear);
+          let filteredProjects = projectsGiven.filter( 
+                    (project) => project.year === selectedYear
+                );
           renderProjects(filteredProjects, projectsContainer, 'h2'); 
         }
 
@@ -71,7 +71,6 @@ function renderPieChart(projectsGiven) {
       .attr('style', `--color:${colors(idx)}`)
       .attr('class', `legend-item ${idx === selectedIndex ? 'selected' : ''}`)
       .html(`<span class="swatch"></span>${d.label} <em>(${d.value})</em>`);
-      // html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
   });
 }
 
