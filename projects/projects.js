@@ -38,8 +38,6 @@ function renderPieChart(projectsGiven) {
   let arcs = arcData.map((d) => arcGenerator(d));
 
   arcs.forEach((arc, i) => {
-    // console.log(d);
-    // console.log(idx);
     svg.append('path')
       .attr('d', arc)
       .attr('fill', colors(i)) 
@@ -60,7 +58,6 @@ function renderPieChart(projectsGiven) {
         } else {
           let selectedYear = data[selectedIndex].label; 
           filteredProjects = projects.filter((p) => p.year === selectedYear);
-          // let filteredProjects = filterProjectsByYear(projects, selectedYear); 
           renderProjects(filteredProjects, projectsContainer, 'h2'); 
         }
 
@@ -74,7 +71,7 @@ function renderPieChart(projectsGiven) {
       .attr('style', `--color:${colors(idx)}`)
       .attr('class', `legend-item ${idx === selectedIndex ? 'selected' : ''}`)
       .html(`<span class="swatch"></span>${d.label} <em>(${d.value})</em>`);
-      html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
+      // html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
   });
 }
 
