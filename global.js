@@ -2,8 +2,9 @@ let pages = [
   {url: 'index.html', title: 'Home'},
   {url: 'projects/index.html', title: 'Projects'},
   {url: 'contact/index.html', title: 'Contact'},
-  {url: 'https://github.com/amelialei', title: 'GitHub'},
+  {url: 'meta/index.html', title: 'Meta'},
   {url: 'resume/index.html', title: 'Resume'},
+  {url: 'https://github.com/amelialei', title: 'GitHub'},
 ];
 
 let nav = document.createElement('nav');
@@ -15,11 +16,11 @@ for (let p of pages) {
 
   const ARE_WE_HOME = document.documentElement.classList.contains('home');
 
-  // url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url;
-  if (!url.startsWith('http')) {
-    url = ARE_WE_HOME ? url : `/${url}`;
-    url = `/portfolio${url}`;
-  }
+  url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url;
+  // if (!url.startsWith('http')) {
+  //   url = ARE_WE_HOME ? url : `/${url}`;
+  //   url = `/portfolio${url}`;
+  // }
 
   let a = document.createElement('a');
   a.href = url;
