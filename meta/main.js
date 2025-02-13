@@ -67,6 +67,37 @@ function displayStats() {
    dl.append('dd').text(avgLineLength.toFixed(2));
   }
 
+
+function updateTooltipVisibility(isVisible) {
+    const tooltip = document.getElementById('commit-tooltip');
+    tooltip.hidden = !isVisible;
+}
+
+function updateTooltipPosition(event) {
+    const tooltip = document.getElementById('commit-tooltip');
+    tooltip.style.left = `${event.clientX}px`;
+    tooltip.style.top = `${event.clientY}px`;
+}
+
+function updateTooltipContent(commit) {
+    const link = document.getElementById('commit-link');
+    const date = document.getElementById('commit-date');
+    const time = document.getElementById('commit-time');
+    const author = document.getElementById('commit-author');
+    const lines = document.getElementById('commit-lines');
+
+    if (Object.keys(commit).length === 0) return;
+  
+    link.href = commit.url;
+    link.textContent = commit.id;
+    date.textContent = commit.datetime?.toLocaleString('en', {
+      dateStyle: 'full',
+    });
+    time.textContent = commit.time;
+    author.textContent = commit.author;
+    lines.textContent = commit.totalLines;
+}
+
 async function createScatterplot() {
     const width = 1000;
     const height = 600;
@@ -100,6 +131,15 @@ async function createScatterplot() {
         .scaleLinear()
         .domain([0, 24])
         .range([usableArea.bottom, usableArea.top]);
+    
+    // Add gridlines BEFORE the axes
+    const gridlines = svg
+    .append('g')
+    .attr('class', 'gridlines')
+    .attr('transform', `translate(${usableArea.left}, 0)`);
+
+    // Create gridlines as an axis with no labels and full-width ticks
+    gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
 
     // Create the Axes
     const xAxis = d3.axisBottom(xScale);
@@ -129,7 +169,17 @@ async function createScatterplot() {
         .attr('cx', (d) => xScale(d.datetime))
         .attr('cy', (d) => yScale(d.hourFrac))
         .attr('r', 5)
-        .attr('fill', 'steelblue');
+        .attr('fill', 'steelblue')
+        .on('mouseenter', (event, commit) => {
+            updateTooltipContent(commit);
+            updateTooltipVisibility(true);
+            updateTooltipPosition(event);
+        })
+        .on('mouseleave', () => {
+            updateTooltipContent({});
+            updateTooltipVisibility(false);
+        });
+    
 }
 
 
@@ -145,7 +195,7 @@ async function loadData() {
 
     displayStats()    
     processCommits();
-    console.log(commits);
+    // console.log(commits);
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
