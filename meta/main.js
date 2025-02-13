@@ -162,24 +162,39 @@ async function createScatterplot() {
     // Append Data Points
     const dots = svg.append('g').attr('class', 'dots');
 
+    const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
+    const rScale = d3
+        .scaleSqrt() 
+        .domain([minLines, maxLines])
+        .range([3, 20]);
+
+    const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
+
     dots
         .selectAll('circle')
-        .data(commits)
+        .data(sortedCommits).join('circle')
         .join('circle')
         .attr('cx', (d) => xScale(d.datetime))
         .attr('cy', (d) => yScale(d.hourFrac))
-        .attr('r', 5)
+        .attr('r', (d) => rScale(d.totalLines))
         .attr('fill', 'steelblue')
-        .on('mouseenter', (event, commit) => {
-            updateTooltipContent(commit);
+        .style('fill-opacity', 0.7)
+        .on('mouseenter', function (event, sortedCommits) {
+            d3.select(event.currentTarget).style('fill-opacity', 1); // Full opacity on hover
+            updateTooltipContent(sortedCommits);
             updateTooltipVisibility(true);
             updateTooltipPosition(event);
-        })
-        .on('mouseleave', () => {
+          })
+        .on('mouseleave', function (event) {
+            d3.select(event.currentTarget).style('fill-opacity', 0.7); // Restore transparency
             updateTooltipContent({});
             updateTooltipVisibility(false);
         });
-    
+}
+
+function brushSelector() {
+    const svg = document.querySelector('svg');
+    d3.select(svg).call(d3.brush());
 }
 
 
@@ -201,7 +216,10 @@ async function loadData() {
 document.addEventListener('DOMContentLoaded', async () => {
     await loadData();
     createScatterplot();
-  });
+    brushSelector();
+});
+
+
 
 
 
