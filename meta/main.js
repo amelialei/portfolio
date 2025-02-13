@@ -259,8 +259,11 @@ function updateLanguageBreakdown() {
       const formatted = d3.format('.1~%')(proportion);
   
       container.innerHTML += `
-              <dt>${language}</dt>
-              <dd>${count} lines (${formatted})</dd>
+        <div class="language-item">
+            <dt>${language}</dt>
+            <dd>${count} lines</dd>
+            <dd>(${formatted})</dd>
+        </div>
           `;
     }
   
@@ -285,7 +288,6 @@ async function loadData() {
 
     displayStats()    
     processCommits();
-    // console.log(commits);
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
