@@ -16,11 +16,11 @@ for (let p of pages) {
 
   const ARE_WE_HOME = document.documentElement.classList.contains('home');
 
-  // url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url;
-  if (!url.startsWith('http')) {
-    url = ARE_WE_HOME ? url : `/${url}`;
-    url = `/portfolio${url}`;
-  }
+  url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url;
+  // if (!url.startsWith('http')) {
+  //   url = ARE_WE_HOME ? url : `/${url}`;
+  //   url = `/portfolio${url}`;
+  // }
 
   let a = document.createElement('a');
   a.href = url;
@@ -119,6 +119,16 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
     const year = document.createElement('p');
     year.textContent = project.year ? project.year : 'Year unknown';
     year.classList.add('project-year'); 
+
+    if (project.url) {
+      const projectLink = document.createElement('a');
+      projectLink.href = project.url;
+      projectLink.textContent = 'View Project';
+      projectLink.target = '_blank'; 
+      projectLink.rel = 'noopener noreferrer'; 
+      projectLink.classList.add('project-link'); 
+      detailsContainer.appendChild(projectLink);
+    }
 
     detailsContainer.appendChild(description);
     detailsContainer.appendChild(year);
