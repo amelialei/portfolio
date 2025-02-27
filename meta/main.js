@@ -6,50 +6,58 @@ let xScale, yScale;
 
 let selectedCommits = [];
 
+let commitProgress = 100;
+
 function processCommits() {
     commits = d3
-      .groups(data, (d) => d.commit)
-      .map(([commit, lines]) => {
-        let first = lines[0];
-        let { author, date, time, timezone, datetime } = first;
-        let ret = {
-          id: commit,
-          url: 'https://github.com/amelialei/portfolio/commit/' + commit,
-          author,
-          date,
-          time,
-          timezone,
-          datetime,
-          hourFrac: datetime.getHours() + datetime.getMinutes() / 60,
-          totalLines: lines.length,
-        };
-  
-        Object.defineProperty(ret, 'lines', {
-          value: lines,
-          writable: false,
-          configurable: false,
-          enumerable: false,
+        .groups(data, (d) => d.commit)
+        .map(([commit, lines]) => {
+            let first = lines[0];
+            let {
+                author,
+                date,
+                time,
+                timezone,
+                datetime
+            } = first;
+            let ret = {
+                id: commit,
+                url: 'https://github.com/amelialei/portfolio/commit/' + commit,
+                author,
+                date,
+                time,
+                timezone,
+                datetime,
+                hourFrac: datetime.getHours() + datetime.getMinutes() / 60,
+                totalLines: lines.length,
+            };
+
+            Object.defineProperty(ret, 'lines', {
+                value: lines,
+                writable: false,
+                configurable: false,
+                enumerable: false,
+            });
+
+            return ret;
         });
-  
-        return ret;
-      });
 }
 
 function displayStats() {
     // Process commits first
     processCommits();
-  
+
     // Create the dl element
     const dl = d3.select('#stats').append('dl').attr('class', 'stats');
-  
+
     // Add total LOC
     dl.append('dt').html('Total <abbr title="Lines of code">LOC</abbr>');
     dl.append('dd').text(data.length);
-  
+
     // Add total commits
     dl.append('dt').text('Commits');
     dl.append('dd').text(commits.length);
-  
+
     // Number of files
     const totalFiles = d3.groups(data, (d) => d.file).length;
     dl.append('dt').text('Files');
@@ -65,11 +73,35 @@ function displayStats() {
     dl.append('dt').text('Avg. file length');
     dl.append('dd').text(avgFileLength.toFixed(2));
 
-   // Average Line Length
-   const avgLineLength = d3.mean(data, (d) => d.length);
-   dl.append('dt').text('Avg. line length');
-   dl.append('dd').text(avgLineLength.toFixed(2));
-  }
+    // Average Line Length
+    const avgLineLength = d3.mean(data, (d) => d.length);
+    dl.append('dt').text('Avg. line length');
+    dl.append('dd').text(avgLineLength.toFixed(2));
+}
+
+let timeScale = d3.scaleTime()
+    .domain([d3.min(commits, d => d.datetime), d3.max(commits, d => d.datetime)])
+    .range([0, 100]);
+let commitMaxTime = timeScale.invert(commitProgress);
+
+const slider = d3.select("#commit-slider");
+const selectedTime = d3.select("#selectedTime");
+
+slider.on("input", function() {
+    commitProgress = +this.value;
+    const commitMaxTime = timeScale.invert(commitProgress);
+    selectedTime.text(commitMaxTime.toLocaleString(undefined, {
+        dateStyle: "long",
+        timeStyle: "short"
+    }));
+});
+
+selectedTime.text(timeScale.invert(commitProgress).toLocaleString(undefined, {
+    dateStyle: "long",
+    timeStyle: "short"
+}));
+
+
 
 
 function updateTooltipVisibility(isVisible) {
@@ -91,11 +123,11 @@ function updateTooltipContent(commit) {
     const lines = document.getElementById('commit-lines');
 
     if (Object.keys(commit).length === 0) return;
-  
+
     link.href = commit.url;
     link.textContent = commit.id;
     date.textContent = commit.datetime?.toLocaleString('en', {
-      dateStyle: 'full',
+        dateStyle: 'full',
     });
     time.textContent = commit.time;
     author.textContent = commit.author;
@@ -105,7 +137,12 @@ function updateTooltipContent(commit) {
 async function createScatterplot() {
     const width = 1000;
     const height = 600;
-    const margin = { top: 10, right: 10, bottom: 30, left: 20 };
+    const margin = {
+        top: 10,
+        right: 10,
+        bottom: 30,
+        left: 20
+    };
 
     // Define usable area
     const usableArea = {
@@ -135,12 +172,12 @@ async function createScatterplot() {
         .scaleLinear()
         .domain([0, 24])
         .range([usableArea.bottom, usableArea.top]);
-    
+
     // Add gridlines BEFORE the axes
     const gridlines = svg
-    .append('g')
-    .attr('class', 'gridlines')
-    .attr('transform', `translate(${usableArea.left}, 0)`);
+        .append('g')
+        .attr('class', 'gridlines')
+        .attr('transform', `translate(${usableArea.left}, 0)`);
 
     // Create gridlines as an axis with no labels and full-width ticks
     gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
@@ -168,7 +205,7 @@ async function createScatterplot() {
 
     const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
     const rScale = d3
-        .scaleSqrt() 
+        .scaleSqrt()
         .domain([minLines, maxLines])
         .range([3, 20]);
 
@@ -183,18 +220,18 @@ async function createScatterplot() {
         .attr('r', (d) => rScale(d.totalLines))
         .attr('fill', 'steelblue')
         .style('fill-opacity', 0.7)
-        .on('mouseenter', function (event, sortedCommits) {
+        .on('mouseenter', function(event, sortedCommits) {
             d3.select(event.currentTarget).style('fill-opacity', 1); // Full opacity on hover
             updateTooltipContent(sortedCommits);
             updateTooltipVisibility(true);
             updateTooltipPosition(event);
-            d3.select(event.currentTarget).classed('selected', true); 
-          })
-        .on('mouseleave', function (event) {
+            d3.select(event.currentTarget).classed('selected', true);
+        })
+        .on('mouseleave', function(event) {
             d3.select(event.currentTarget).style('fill-opacity', 0.7); // Restore transparency
             updateTooltipContent({});
             updateTooltipVisibility(false);
-            d3.select(event.currentTarget).classed('selected', false); 
+            d3.select(event.currentTarget).classed('selected', false);
         });
 }
 
@@ -210,12 +247,12 @@ function brushSelector() {
 let brushSelection = null;
 
 function isCommitSelected(commit) {
-  return selectedCommits.includes(commit);
+    return selectedCommits.includes(commit);
 }
 
 function updateSelection() {
-  // Update visual state of dots based on selection
-  d3.selectAll('circle').classed('selected', (d) => isCommitSelected(d));
+    // Update visual state of dots based on selection
+    d3.selectAll('circle').classed('selected', (d) => isCommitSelected(d));
 }
 
 function updateSelectionCount() {
@@ -223,35 +260,35 @@ function updateSelectionCount() {
     countElement.textContent = `${
       selectedCommits.length || 'No'
     } commits selected`;
-  
+
     return selectedCommits;
 }
 
 function updateLanguageBreakdown() {
     const container = document.getElementById('language-breakdown');
-  
+
     if (selectedCommits.length === 0) {
-      container.innerHTML = '';
-      return;
+        container.innerHTML = '';
+        return;
     }
     const requiredCommits = selectedCommits.length ? selectedCommits : commits;
     const lines = requiredCommits.flatMap((d) => d.lines);
-  
+
     // Use d3.rollup to count lines per language
     const breakdown = d3.rollup(
-      lines,
-      (v) => v.length,
-      (d) => d.type
+        lines,
+        (v) => v.length,
+        (d) => d.type
     );
-  
+
     // Update DOM with breakdown
     container.innerHTML = '';
-  
+
     for (const [language, count] of breakdown) {
-      const proportion = count / lines.length;
-      const formatted = d3.format('.1~%')(proportion);
-  
-      container.innerHTML += `
+        const proportion = count / lines.length;
+        const formatted = d3.format('.1~%')(proportion);
+
+        container.innerHTML += `
         <div class="language-item">
             <dt>${language}</dt>
             <dd>${count} lines</dd>
@@ -259,40 +296,46 @@ function updateLanguageBreakdown() {
         </div>
           `;
     }
-  
+
     return breakdown;
-  }
+}
 
 
 
 function brushed(evt) {
-  let brushSelection = evt.selection;
-  selectedCommits = !brushSelection
-    ? []
-    : commits.filter((commit) => {
-        let min = { x: brushSelection[0][0], y: brushSelection[0][1] };
-        let max = { x: brushSelection[1][0], y: brushSelection[1][1] };
-        let x = xScale(commit.date);
-        let y = yScale(commit.hourFrac);
+    let brushSelection = evt.selection;
+    selectedCommits = !brushSelection ?
+        [] :
+        commits.filter((commit) => {
+            let min = {
+                x: brushSelection[0][0],
+                y: brushSelection[0][1]
+            };
+            let max = {
+                x: brushSelection[1][0],
+                y: brushSelection[1][1]
+            };
+            let x = xScale(commit.date);
+            let y = yScale(commit.hourFrac);
 
-        return x >= min.x && x <= max.x && y >= min.y && y <= max.y;
-      });
-  updateSelection();
-  updateSelectionCount();
-  updateLanguageBreakdown();
+            return x >= min.x && x <= max.x && y >= min.y && y <= max.y;
+        });
+    updateSelection();
+    updateSelectionCount();
+    updateLanguageBreakdown();
 }
 
 async function loadData() {
     data = await d3.csv('loc.csv', (row) => ({
         ...row,
-        line: Number(row.line), 
+        line: Number(row.line),
         depth: Number(row.depth),
         length: Number(row.length),
         date: new Date(row.date + 'T00:00' + row.timezone),
         datetime: new Date(row.datetime),
     }));
 
-    displayStats()    
+    displayStats()
     processCommits();
 }
 
@@ -301,8 +344,3 @@ document.addEventListener('DOMContentLoaded', async () => {
     createScatterplot();
     brushSelector();
 });
-
-
-
-
-

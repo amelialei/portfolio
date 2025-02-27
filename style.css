@@ -375,8 +375,35 @@ circle.selected {
   margin: 0;
   font-size: 1.4rem;
   font-size: 1rem;
-
 }
+
+#commit-filter {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+#commit-filter label {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+#commit-slider {
+  flex: 1;
+  height: 7px;
+  margin: 0 10px;
+}
+
+#selectedTime {
+  margin-left: auto; 
+}
+
+
+
+
 
 
 
