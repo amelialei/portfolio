@@ -40,41 +40,5 @@
         "year": "2021",
         "image": "../images/loan-approval.jpg",
         "description": "I examined how employment length, income, and loan amount impact loan approval rates for young (18-28) vs. mid-career adults (28-38), focusing on education level. Using scatter plots and a categorical bar plot, I analyzed key relationships and conducted T-tests for significance. Results showed that education level has little impact on loan amounts, but mid-career adults are significantly more likely to repay loans, likely due to greater financial stability and literacy."
-    },
-    {
-        "title": "RGB Image Processing Toolkit",
-        "year": "2023",
-        "image": "../images/pixel-heart.jpg",
-        "description": "I implemented an RGBImage class to represent and manipulate RGB images, ensuring proper validation and deep copying of pixel data. I also created an ImageProcessingTemplate class with methods for negating, grayscaling, and rotating images. Additionally, I extended this template to develop StandardImageProcessing and PremiumImageProcessing classes, which introduced cost-based processing and advanced features like chroma keying. The project focused on object-oriented design, deep copying techniques, and efficient pixel manipulation."
-    },
-    {
-        "title": "MNIST Number Classification",
-        "year": "2022",
-        "image": "../images/numbers.jpg",
-        "description": "This project implements a K-Nearest Neighbors (K-NN) classifier for the MNIST handwritten digit dataset using Java to classify user written numbers. The program loads compressed MNIST image and label data, processes it into a structured format, and applies the Euclidean distance metric to classify test images based on their k-nearest neighbors in the training set. A priority queue is used to efficiently store and retrieve the closest matches. The classifier is tested on a subset of the MNIST dataset, and its accuracy is evaluated."
-    },
-    {
-        "title": "PinPoint",
-        "year": "2022",
-        "image": "../images/pinpoint.avif",
-        "description": "PinPoint is a social location-sharing app that lets you stay connected with friends in real time. Users can drop pins on a map to share favorite restaurants, cafes, hangout spots, or any place they love, making it easy for friends to discover new locations. Friends can see shared pins, add comments, and set meet-up plans in the app. ."
-    },
-    {
-        "title": "Budget App",
-        "year": "2022",
-        "image": "../images/piggy-bank.jpg",
-        "description": "TravelBudget is a practical app designed to help you manage and track your spending during vacations. You can easily log your expenses, categorize purchases (e.g., food, transportation, activities), and monitor your overall spending in real-time. The app also features a built-in currency converter, allowing you to view prices in your home currency, helping you stay on top of your budget no matter where you are.."
-    },
-    {
-        "title": "Recipe Book",
-        "year": "2021",
-        "image": "../images/cooking.jpg",
-        "description": "This is personalized digital recipe collection that allows users to create, organize, and share their favorite recipes. The app allows you to upload and save your own recipes, categorize them by meal type, ingredients, or cuisine, and easily search through them. It also includes features for meal planning, where users can select recipes for the week and generate a shopping list based on the ingredients. The app offers the ability to share recipes with friends and family. "
-    },
-    {
-        "title": "Social Media Sentiment Analysis",
-        "year": "2024",
-        "image": "../images/social-media.jpg",
-        "description": "This project uses NLP and machine learning to analyze social media posts and gauge public sentiment toward a brand. By scraping data from platforms like Twitter and Instagram, it classifies posts as positive, negative, or neutral. This helps businesses monitor customer perceptions, identify PR issues, and track marketing effectiveness in real-time. Techniques like text preprocessing, tokenization, and sentiment classification (e.g., logistic regression, SVM, LSTM) are used to extract insights from large volumes of unstructured data."
     }
 ]
