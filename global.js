@@ -107,7 +107,7 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
 
     const img = document.createElement('img');
     // img.src = project.image?.trim() || 'default-placeholder.png';
-    const ARE_WE_HOME = location.pathname === '/' || location.pathname.endsWith('index.html');
+    const ARE_WE_HOME = location.pathname === '/index.html' || location.pathname === '/';
 
     let rawImage = project.image?.trim() || 'default-placeholder.png';
 
