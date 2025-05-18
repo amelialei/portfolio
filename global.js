@@ -106,7 +106,20 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
     heading.textContent = project.title || 'Untitled Project';
 
     const img = document.createElement('img');
-    img.src = project.image?.trim() || 'default-placeholder.png';
+    // img.src = project.image?.trim() || 'default-placeholder.png';
+    // Determine if we're on the homepage
+    const ARE_WE_HOME = location.pathname === '/' || location.pathname.endsWith('index.html');
+
+    // Handle relative image path
+    let rawImage = project.image?.trim() || 'default-placeholder.png';
+
+    if (!rawImage.startsWith('http')) {
+      // Ensure consistent path without leading ../ or /
+      rawImage = rawImage.replace(/^\.?\.?\/*/, 'images/');
+      img.src = ARE_WE_HOME ? rawImage : '../' + rawImage;
+    } else {
+      img.src = rawImage;
+    }
     img.alt = project.title?.trim() || 'Project image';
     img.loading = 'lazy';
 
