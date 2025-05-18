@@ -16,11 +16,11 @@ for (let p of pages) {
 
   const ARE_WE_HOME = document.documentElement.classList.contains('home');
 
-  // url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url;
-  if (!url.startsWith('http')) {
-    url = ARE_WE_HOME ? url : `/${url}`;
-    url = `/portfolio${url}`;
-  }
+  url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url;
+  // if (!url.startsWith('http')) {
+  //   url = ARE_WE_HOME ? url : `/${url}`;
+  //   url = `/portfolio${url}`;
+  // }
 
   let a = document.createElement('a');
   a.href = url;
@@ -99,6 +99,9 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
       projectsTitle.textContent = `${projects.length} Projects`;
   }
 
+  // Determine if we're on the home page
+  const isHomePage = document.documentElement.classList.contains('home');
+
   projects.forEach(project => {
     const article = document.createElement('article');
 
@@ -106,7 +109,12 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
     heading.textContent = project.title || 'Untitled Project';
 
     const img = document.createElement('img');
-    img.src = project.image?.trim() || 'default-placeholder.png';
+    // Adjust image path based on current page
+    let imagePath = project.image?.trim() || 'default-placeholder.png';
+    if (imagePath.startsWith('../images/')) {
+      imagePath = isHomePage ? imagePath.replace('../', '') : imagePath;
+    }
+    img.src = imagePath;
     img.alt = project.title?.trim() || 'Project image';
     img.loading = 'lazy';
 
