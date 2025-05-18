@@ -1,50 +1,45 @@
+
 [   {
-        "title": "Bike Watching",
-        "year": "2025",
-        "image": "images/BikeWatching.png",
-        "description": "An interactive map visualizing bike traffic in the Boston and Cambridge area during different times of the day. The user can filter by time and the traffic will adjust accordingly. Traffic is also color coded to categorize the rate of traffic.",
-        "url": "https://amelialei.github.io/BikeWatching/"
-    },
-    {
-        "title": "Cafe Recommendation System",
-        "year": "2024",
-        "image": "images/cafe-rec.webp",
-        "description": "The Cafe Recommender System is a personalized recommendation engine that helps users discover cafes based on user preferences, sentiment analysis, and location-based filtering. Using data from the Yelp Academic Dataset, the system integrates collaborative filtering (k-nearest neighbors), sentiment analysis, and geospatial distance calculations to generate highly relevant recommendations.        "
-    },
-    {
-        "title": "Recipe EDA and Rating Predictions",
-        "year": "2024",
-        "image": "images/recipe.gif",
-        "description": "This project analyzes recipe data from food.com containing 83,782 recipes and 731,927 reviews to uncover trends in preparation time, nutrition, and user ratings. The study involves data cleaning, exploratory data analysis (EDA), and missing data analysis, revealing insights like lower sodium recipes receiving higher ratings. I also built a predictive model to estimate recipe ratings based on ingredients, nutrition, and cooking time. "
-    },
-    {
-        "title": "Weather App",
-        "year": "2024",
-        "image": "images/weather-app.gif",
-        "description": "This project is a web-based weather application built using Django and Bootstrap. The app fetches and displays the current weather and a forecast for the user's location based on their IP address. It provides key weather data, including temperature, humidity, wind speed, pressure, and sunrise/sunset times for the current and next day."
-    },
-    {
-        "title": "Ethereum Predictive Model",
-        "year": "2024",
-        "image": "images/ethereum.jpg",
-        "description": "I predicted Ethereum’s closing price and price trends using machine learning. Data preprocessing included 10-minute aggregation, log-transforming volume, and MinMax scaling. A polynomial linear regression (degree 4) was used first, followed by a decision tree regressor, which improved accuracy. I also built a decision tree classifier to predict price increases with moderate accuracy. The project involved hyperparameter tuning, feature importance analysis, and performance visualization."
-    },
-    {
-        "title": "Statistical Language Model",
-        "year": "2024",
-        "image": "images/language-model.jpg",
-        "description": "Created a series of language models for processing and generating text. This includes functions to fetch and tokenize a book from a URL, and various classes for different types of language models: UniformLM, UnigramLM, and NGramLM. The UniformLM and UnigramLM models calculate probabilities based on token frequency and generate random text based on these probabilities. The NGramLM model works with n-grams (sequences of n words), calculating conditional probabilities for word sequences and using a recursive approach to handle higher-order n-grams. "
-    },
-    {
-        "title": "Loan Approval EDA",
-        "year": "2024",
-        "image": "images/loan-approval.jpg",
-        "description": "I examined how employment length, income, and loan amount impact loan approval rates for young (18-28) vs. mid-career adults (28-38), focusing on education level. Using scatter plots and a categorical bar plot, I analyzed key relationships and conducted T-tests for significance. Results showed that education level has little impact on loan amounts, but mid-career adults are significantly more likely to repay loans, likely due to greater financial stability and literacy."
-    },
-    {
-        "title": "STEAM Game Recommendation",
-        "year": "2025",
-        "image": "images/loan-approval.jpg",
-        "description": "I examined how employment length, income, and loan amount impact loan approval rates for young (18-28) vs. mid-career adults (28-38), focusing on education level. Using scatter plots and a categorical bar plot, I analyzed key relationships and conducted T-tests for significance. Results showed that education level has little impact on loan amounts, but mid-career adults are significantly more likely to repay loans, likely due to greater financial stability and literacy."
-    }
+    "title": "Bike Watching",
+    "year": "2025",
+    "image": "../images/BikeWatching.png",
+    "description": "An interactive map visualizing bike traffic in the Boston and Cambridge area during different times of the day. The user can filter by time and the traffic will adjust accordingly. Traffic is also color coded to categorize the rate of traffic.",
+    "url": "https://amelialei.github.io/BikeWatching/"
+},
+{
+    "title": "Cafe Recommendation System",
+    "year": "2024",
+    "image": "../images/cafe-rec.webp",
+    "description": "The Cafe Recommender System is a personalized recommendation engine that helps users discover cafes based on user preferences, sentiment analysis, and location-based filtering. Using data from the Yelp Academic Dataset, the system integrates collaborative filtering, sentiment analysis, and geospatial distance calculations to generate highly relevant recommendations.        "
+},
+{
+    "title": "Recipe EDA and Rating Predictions",
+    "year": "2024",
+    "image": "../images/recipe.gif",
+    "description": "This project analyzes recipe data from food.com containing 83,782 recipes and 731,927 reviews to uncover trends in preparation time, nutrition, and user ratings. The study involves data cleaning, exploratory data analysis (EDA), and missing data analysis, revealing insights like lower sodium recipes receiving higher ratings. I also built a predictive model to estimate recipe ratings based on ingredients, nutrition, and cooking time. "
+},
+{
+    "title": "Weather App",
+    "year": "2024",
+    "image": "../images/weather-app.gif",
+    "description": "This project is a web-based weather application built using Django and Bootstrap. The app fetches and displays the current weather and a forecast for the user's location based on their IP address. It provides key weather data, including temperature, humidity, wind speed, pressure, and sunrise/sunset times for the current and next day."
+},
+{
+    "title": "Ethereum Predictive Model",
+    "year": "2023",
+    "image": "../images/ethereum.jpg",
+    "description": "I predicted Ethereum’s closing price and price trends using machine learning. Data preprocessing included 10-minute aggregation, log-transforming volume, and MinMax scaling. A polynomial linear regression (degree 4) was used first, followed by a decision tree regressor, which improved accuracy. I also built a decision tree classifier to predict price increases with moderate accuracy. The project involved hyperparameter tuning, feature importance analysis, and performance visualization."
+},
+{
+    "title": "Statistical Language Model",
+    "year": "2023",
+    "image": "../images/language-model.jpg",
+    "description": "Created a series of language models for processing and generating text. This includes functions to fetch and tokenize a book from a URL, and various classes for different types of language models: UniformLM, UnigramLM, and NGramLM. The UniformLM and UnigramLM models calculate probabilities based on token frequency and generate random text based on these probabilities. The NGramLM model works with n-grams (sequences of n words), calculating conditional probabilities for word sequences and using a recursive approach to handle higher-order n-grams. "
+},
+{
+    "title": "Loan Approval EDA",
+    "year": "2021",
+    "image": "../images/loan-approval.jpg",
+    "description": "I examined how employment length, income, and loan amount impact loan approval rates for young (18-28) vs. mid-career adults (28-38), focusing on education level. Using scatter plots and a categorical bar plot, I analyzed key relationships and conducted T-tests for significance. Results showed that education level has little impact on loan amounts, but mid-career adults are significantly more likely to repay loans, likely due to greater financial stability and literacy."
+}
 ]

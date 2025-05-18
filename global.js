@@ -106,20 +106,7 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
     heading.textContent = project.title || 'Untitled Project';
 
     const img = document.createElement('img');
-
-    let rawImage = project.image?.trim() || 'default-placeholder.png';
-    
-    // More reliable check for whether we're on the homepage
-    const isHomePage = location.pathname === '/' || location.pathname === '/index.html';
-    
-    const basePath = window.location.pathname.includes('/projects') ? '../' : '';
-    const repoRoot = '/portfolio/'; // Change this if your repo is named something else
-    
-    if (!rawImage.startsWith('http')) {
-      img.src = repoRoot + basePath + rawImage;
-    } else {
-      img.src = rawImage;
-    }
+    img.src = project.image?.trim() || 'default-placeholder.png';
     img.alt = project.title?.trim() || 'Project image';
     img.loading = 'lazy';
 
