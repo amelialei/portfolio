@@ -16,11 +16,11 @@ for (let p of pages) {
 
   const ARE_WE_HOME = document.documentElement.classList.contains('home');
 
-  url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url;
-  // if (!url.startsWith('http')) {
-  //   url = ARE_WE_HOME ? url : `/${url}`;
-  //   url = `/portfolio${url}`;
-  // }
+  // url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url;
+  if (!url.startsWith('http')) {
+    url = ARE_WE_HOME ? url : `/${url}`;
+    url = `/portfolio${url}`;
+  }
 
   let a = document.createElement('a');
   a.href = url;
@@ -99,8 +99,8 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
       projectsTitle.textContent = `${projects.length} Projects`;
   }
 
-  // Determine if we're on the home page
-  const isHomePage = document.documentElement.classList.contains('home');
+  const ARE_WE_HOME = document.documentElement.classList.contains('home');
+  console.log('Current page is home page:', ARE_WE_HOME);
 
   projects.forEach(project => {
     const article = document.createElement('article');
@@ -109,14 +109,38 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
     heading.textContent = project.title || 'Untitled Project';
 
     const img = document.createElement('img');
-    // Adjust image path based on current page
+    // Handle image paths similar to navigation URLs
     let imagePath = project.image?.trim() || 'default-placeholder.png';
-    if (imagePath.startsWith('../images/')) {
-      imagePath = isHomePage ? imagePath.replace('../', '') : imagePath;
+
+    if (!imagePath.startsWith('http') && !imagePath.startsWith('./')) {
+      imagePath = ARE_WE_HOME ? imagePath : '../' + imagePath;
     }
+    console.log('Original image path:', imagePath);
+    
+    if (!imagePath.startsWith('http')) {
+      // Remove any leading '../' or '/' to normalize the path
+      imagePath = imagePath.replace(/^\.\.\/|\//, '');
+      // Add '../' prefix if we're not on the home page
+      imagePath = !ARE_WE_HOME ? '../' + imagePath : imagePath;
+    }
+    console.log('Final image path:', imagePath);
+    
     img.src = imagePath;
     img.alt = project.title?.trim() || 'Project image';
     img.loading = 'lazy';
+
+    // Enhanced error handling for images
+    img.onerror = function() {
+      console.error(`Failed to load image for project "${project.title}":`);
+      console.error('- Attempted path:', imagePath);
+      console.error('- Current page:', window.location.pathname);
+      console.error('- Home page status:', ARE_WE_HOME);
+      this.src = 'default-placeholder.png';
+    };
+
+    img.onload = function() {
+      console.log(`Successfully loaded image for "${project.title}" from:`, imagePath);
+    };
 
     const detailsContainer = document.createElement('div');
     detailsContainer.classList.add('project-details');
