@@ -112,13 +112,14 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
     // More reliable check for whether we're on the homepage
     const isHomePage = location.pathname === '/' || location.pathname === '/index.html';
     
-    // If the image path doesn't start with http(s), adjust it
+    const basePath = window.location.pathname.includes('/projects') ? '../' : '';
+    const repoRoot = '/portfolio/'; // Change this if your repo is named something else
+    
     if (!rawImage.startsWith('http')) {
-      img.src = isHomePage ? rawImage : '../' + rawImage;
+      img.src = repoRoot + basePath + rawImage;
     } else {
       img.src = rawImage;
     }
-    
     img.alt = project.title?.trim() || 'Project image';
     img.loading = 'lazy';
 
