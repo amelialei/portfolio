@@ -1,9 +1,9 @@
 
 [
     {
-        "title": "Steam Game Recommendation",
+        "title": "Glucose Response Visualizer",
         "year": "2025",
-        "image": "../images/glucose.png",
+        "image": "../images/Glucose.png",
         "description": "Designed and developed an interactive scrollytelling visualization using D3.js to illustrate glucose responses to meals across individuals with varying diabetes statuses and gut health levels. Integrated real CGM data to show time-based glucose curves for different carb intakes (low, medium, high). Enabled user exploration through clickable buttons and smooth animated transitions, highlighting the impact of nutrition and microbiome on metabolic response.",
         "url": "https://yoonice100.github.io/CGMacros/"
     },
